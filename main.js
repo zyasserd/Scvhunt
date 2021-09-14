@@ -3,13 +3,15 @@
 const video = document.querySelector('#video')
 // Check if device has camera
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  // Use video without audio
-  const constraints = { 
-    audio: false,
-    video: {
-        facingMode: "environment"
-    },
-  }
+    // Use video without audio
+    const constraints = { 
+        video: {
+            facingMode: {
+                exact: "environment"
+            }
+        },
+        audio: false,
+    }
   
   // Start video stream
   navigator.mediaDevices.getUserMedia(constraints).then(stream => video.srcObject = stream);
@@ -26,7 +28,7 @@ const detectCode = () => {
   barcodeDetector.detect(video).then(codes => {
     if (codes.length === 0) return;
     
-    console.log(codes[0].rawValue);
+    document.getElementById("log").innerHTML += codes[0].rawValue;
   });
 }
 
