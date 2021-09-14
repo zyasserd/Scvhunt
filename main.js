@@ -7,10 +7,8 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   const constraints = { 
     audio: false,
     video: {
-        facingMode: {
-            exact: "environment"
-        }
-    } ,
+        facingMode: "environment"
+    },
   }
   
   // Start video stream
