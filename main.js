@@ -5,8 +5,12 @@ const video = document.querySelector('#video')
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
   // Use video without audio
   const constraints = { 
-    video: true,
-    audio: false
+    audio: false,
+    video: {
+        facingMode: {
+            exact: "environment"
+        }
+    } ,
   }
   
   // Start video stream
