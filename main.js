@@ -1,36 +1,42 @@
-
-// Get the video element
-const video = document.querySelector('#video')
-// Check if device has camera
-if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Use video without audio
-    const constraints = { 
-        video: {
-            facingMode: {
-                exact: "environment"
-            }
-        },
-        audio: false,
-    }
-  
-  // Start video stream
-  navigator.mediaDevices.getUserMedia(constraints).then(stream => video.srcObject = stream);
-}
-
-
-
-// Create new barcode detector
+const videoElem = document.querySelector('#video');
 const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
-// Detect code function 
-const detectCode = () => {
-  // Start detecting codes on to the video element
-  barcodeDetector.detect(video).then(codes => {
-    if (codes.length === 0) return;
-    
-    document.getElementById("log").innerHTML += codes[0].rawValue;
-  });
+function startQR() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        const constraints = { 
+            video: {
+                facingMode: { // rear camera
+                    exact: "environment"
+                }
+            },
+            audio: false,
+        }
+      
+        navigator.mediaDevices.getUserMedia(constraints).then(stream => videoElem.srcObject = stream);
+    }
+
+    function _detectQR() {
+        barcodeDetector.detect(videoElem).then(codes => {
+        
+            if (codes.length === 0) return;
+            document.getElementById("log").innerHTML = codes[0].rawValue;
+            stopQR();
+        
+        });
+    }
+
+    globalThis.qrReaderID = setInterval(_detectQR, 100);
 }
 
-setInterval(detectCode, 100);
 
+function stopQR() {
+    videoElem.srcObject = null;
+    clearInterval(globalThis.qrReaderID);
+}
+
+
+
+// -----------------------------
+
+
+startQR();
