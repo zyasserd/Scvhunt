@@ -15,7 +15,7 @@ if (!('geolocation' in navigator)) {
 
 
 const videoElem = document.querySelector('#video');
-const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+// const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
 function startQR(onSuccess) {
     const constraints = { 
@@ -95,38 +95,44 @@ class Brainz {
         alert("Incorrect Input!");
     }
 
-    giveLocation(coordinates) {
-        document.getElementById("log").innerHTML = data; //! remove
+    giveLocation(e) {
+        document.getElementById("log").innerHTML = e; //! remove
         
-        if (this.data[this.pointer].actions.location == null)
+        if (this.data[this.pointer].actions.location == null) {
             this.wrongInput();
+            return
+        }
 
         [lat, lon, r] = this.data[this.pointer].actions.location;
-        if (getDistance(coordinates, [lat, lon]) <= r)
+        if (getDistance(e, [lat, lon]) <= r)
             this.next();
         else
             this.wrongInput();
     }
 
-    giveQR(s) {
-        document.getElementById("log").innerHTML = s; //! remove
+    giveQR(e) {
+        document.getElementById("log").innerHTML = e; //! remove
         
-        if (this.data[this.pointer].actions.qr == null)
+        if (this.data[this.pointer].actions.qr == null) {
             this.wrongInput();
+            return
+        }
 
-        if (s == this.data[this.pointer].actions.qr)
+        if (e == this.data[this.pointer].actions.qr)
             this.next();
         else
             this.wrongInput();
     }
 
-    giveText(s) {
-        document.getElementById("log").innerHTML = s; //! remove
+    giveText(e) {
+        document.getElementById("log").innerHTML = e; //! remove
 
-        if (this.data[this.pointer].actions.text == null)
+        if (this.data[this.pointer].actions.text == null) {
             this.wrongInput();
+            return
+        }
 
-        if (s == this.data[this.pointer].actions.text)
+        if (e == this.data[this.pointer].actions.text)
             this.next();
         else
             this.wrongInput();
