@@ -27,8 +27,12 @@ globalThis.data =
         {
             "hint": "scan google.com",
             "actions": {
-                "qr": "link.com",
+                "qr": "google.com",
             }
+        },
+        {
+            "hint": "Done congrats",
+            "actions": { }
         },
     ]
 };

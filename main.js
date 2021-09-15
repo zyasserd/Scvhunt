@@ -152,13 +152,17 @@ class Brainz {
 let myBrainz = new Brainz();
 
 document.getElementById("location").addEventListener('click', () => {
-    getLocation(myBrainz.giveLocation, () => {
+    getLocation((e) => {
+        myBrainz.giveLocation(e);
+    }, () => {
         alert("Failed to get location, try again!");
     });
 });
 
 document.getElementById("qr").addEventListener('click', () => {
-    startQR(myBrainz.giveQR);
+    startQR(e => {
+        myBrainz.giveQR(e);
+    });
 });
 
 document.getElementById("text").addEventListener('click', () => {
