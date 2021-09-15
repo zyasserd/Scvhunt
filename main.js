@@ -46,7 +46,7 @@ function stopQR() {
 }
 
 function getLocation(onSuccess, onError) {
-    navigator.geolocation.watchPosition((e) => {
+    navigator.geolocation.getCurrentPosition((e) => {
         onSuccess([e.coords.latitude, e.coords.longitude]);
     }, onError, {
         enableHighAccuracy: true,
