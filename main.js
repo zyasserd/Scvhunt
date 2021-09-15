@@ -99,37 +99,37 @@ class Brainz {
         document.getElementById("log").innerHTML = data; //! remove
         
         if (this.data[this.pointer].actions.location == null)
-            wrongInput();
+            this.wrongInput();
 
         [lat, lon, r] = this.data[this.pointer].actions.location;
         if (getDistance(coordinates, [lat, lon]) <= r)
             this.next();
         else
-            wrongInput();
+            this.wrongInput();
     }
 
     giveQR(s) {
-        document.getElementById("log").innerHTML = data; //! remove
+        document.getElementById("log").innerHTML = s; //! remove
         
         if (this.data[this.pointer].actions.qr == null)
-            wrongInput();
+            this.wrongInput();
 
         if (s == this.data[this.pointer].actions.qr)
             this.next();
         else
-            wrongInput();
+            this.wrongInput();
     }
 
     giveText(s) {
-        document.getElementById("log").innerHTML = data; //! remove
+        document.getElementById("log").innerHTML = s; //! remove
 
         if (this.data[this.pointer].actions.text == null)
-            wrongInput();
+            this.wrongInput();
 
         if (s == this.data[this.pointer].actions.text)
             this.next();
         else
-            wrongInput();
+            this.wrongInput();
     }
 
     next() {
