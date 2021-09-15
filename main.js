@@ -1,7 +1,7 @@
 const videoElem = document.querySelector('#video');
 const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
-function startQR() {
+function startQR(onScanning) {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         const constraints = { 
             video: {
@@ -19,7 +19,8 @@ function startQR() {
         barcodeDetector.detect(videoElem).then(codes => {
         
             if (codes.length === 0) return;
-            document.getElementById("log").innerHTML = codes[0].rawValue;
+
+            onScanning(codes[0].rawValue);
             stopQR();
         
         });
@@ -39,4 +40,6 @@ function stopQR() {
 // -----------------------------
 
 
-startQR();
+startQR((data) => {
+    document.getElementById("log").innerHTML = data;
+});
