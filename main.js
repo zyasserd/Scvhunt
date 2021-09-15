@@ -124,11 +124,6 @@ class Brainz {
 
 // -----------------------------
 
-
-
-
-// deadlock?
-
 document.getElementById("location").addEventListener('click', () => {
     getLocation((data) => {
         document.getElementById("log").innerHTML = data;
@@ -142,5 +137,5 @@ document.getElementById("qr").addEventListener('click', () => {
 });
 
 document.getElementById("text").addEventListener('click', () => {
-
+    document.getElementById("log").innerHTML = prompt("Write the code"); //.tolower .trim
 });
