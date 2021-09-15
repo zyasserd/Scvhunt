@@ -11,6 +11,9 @@ if (!('geolocation' in navigator)) {
 }
 
 
+// -----------------------------
+
+
 const videoElem = document.querySelector('#video');
 const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
@@ -45,6 +48,7 @@ function stopQR() {
     clearInterval(globalThis.qrReaderID);
 }
 
+
 function getLocation(onSuccess, onError) {
     navigator.geolocation.getCurrentPosition((e) => {
         onSuccess([e.coords.latitude, e.coords.longitude]);
@@ -54,7 +58,6 @@ function getLocation(onSuccess, onError) {
         maximumAge: 0
     });
 }
-
 
 function getDistance([lat1, lon1], [lat2, lon2]) {
     function degreesToRadians(degrees) {
@@ -88,54 +91,76 @@ class Brainz {
         this.next();
     }
 
-    giveLocation(coordinates) { // some kind of message to show to programming error occured
-        if (this.data[this.pointer].actions.location == null) return;
+    wrongInput() {
+        alert("Incorrect Input!");
+    }
+
+    giveLocation(coordinates) {
+        document.getElementById("log").innerHTML = data; //! remove
+        
+        if (this.data[this.pointer].actions.location == null)
+            wrongInput();
 
         [lat, lon, r] = this.data[this.pointer].actions.location;
         if (getDistance(coordinates, [lat, lon]) <= r)
             this.next();
+        else
+            wrongInput();
     }
 
     giveQR(s) {
-        if (this.data[this.pointer].actions.qr == null) return;
+        document.getElementById("log").innerHTML = data; //! remove
+        
+        if (this.data[this.pointer].actions.qr == null)
+            wrongInput();
 
         if (s == this.data[this.pointer].actions.qr)
             this.next();
+        else
+            wrongInput();
     }
 
     giveText(s) {
-        if (this.data[this.pointer].actions.text == null) return;
+        document.getElementById("log").innerHTML = data; //! remove
+
+        if (this.data[this.pointer].actions.text == null)
+            wrongInput();
 
         if (s == this.data[this.pointer].actions.text)
             this.next();
+        else
+            wrongInput();
     }
 
     next() {
         this.pointer++;
 
-        // Change hint
-
         // Change map
+        document.getElementById('pointer').innerHTML = this.pointer;
+
+        // Change hint
+        document.getElementById('hint').innerHTML = this.data[this.pointer].hint;
 
         // Change cookie
+        
     }
 
 }
 
 // -----------------------------
 
-document.getElementById("location").addEventListener('click', () => {
-    getLocation((data) => {
-        document.getElementById("log").innerHTML = data;
-    })
-});
+let myBrainz = Brainz();
 
-document.getElementById("qr").addEventListener('click', () => {
-    startQR((data) => {
-        document.getElementById("log").innerHTML = data;
+document.getElementById("location").addEventListener('click', () => {
+    getLocation(myBrainz.giveLocation, () => {
+        alert("Failed to get location, try again!");
     });
 });
 
+document.getElementById("qr").addEventListener('click', () => {
+    startQR(myBrainz.giveQR);
+});
+
 document.getElementById("text").addEventListener('click', () => {
-    document.getElementById("log").innerHTML = prompt("Write the code"); //.tolower .trim
+    myBrainz.giveText(prompt("Write the code").toLowerCase().trim());
 });

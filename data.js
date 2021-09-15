@@ -1,4 +1,6 @@
 // The format: just for reference
+// the (actions.text) data should be lowercase and trimmed
+
 // {
 //     "data": [
 //         {
@@ -17,12 +19,16 @@ globalThis.data =
 {
     "data": [
         {
-            "hint": "hint1",
+            "hint": "write 1+1",
             "actions": {
-                "location": [1, 2, 5],
-                "qr": "link.com",
-                "text": null
+                "text": "2"
             }
-        }
+        },
+        {
+            "hint": "scan google.com",
+            "actions": {
+                "qr": "link.com",
+            }
+        },
     ]
 };
