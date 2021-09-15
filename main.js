@@ -86,7 +86,7 @@ function getDistance([lat1, lon1], [lat2, lon2]) {
 class Brainz {
 
     constructor() {
-        this.data = JSON.parse(globalThis.data[data]);
+        this.data = JSON.parse(globalThis.data["data"]);
         this.pointer = -1; //! retrieve from the cookie
         this.next();
     }
@@ -142,7 +142,7 @@ class Brainz {
         document.getElementById('hint').innerHTML = this.data[this.pointer].hint;
 
         // Change cookie
-        
+
     }
 
 }
