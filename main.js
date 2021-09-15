@@ -15,7 +15,7 @@ if (!('geolocation' in navigator)) {
 
 
 const videoElem = document.querySelector('#video');
-const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+// const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
 function startQR(onSuccess) {
     const constraints = { 
@@ -86,7 +86,7 @@ function getDistance([lat1, lon1], [lat2, lon2]) {
 class Brainz {
 
     constructor() {
-        this.data = JSON.parse(globalThis.data["data"]);
+        this.data = globalThis.data["data"];
         this.pointer = -1; //! retrieve from the cookie
         this.next();
     }
