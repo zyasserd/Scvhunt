@@ -1,5 +1,6 @@
 'use strict';
 
+// git add . && git commit -m "some stuff" && git push -u origin main
 // TODO:  Cookies to mark the pointer
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -15,7 +16,7 @@ if (!('geolocation' in navigator)) {
 
 
 const videoElem = document.querySelector('#video');
-// const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
 function startQR(onSuccess) {
     const constraints = { 

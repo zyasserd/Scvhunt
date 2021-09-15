@@ -32,7 +32,7 @@ globalThis.data =
         },
         {
             "hint": "Done congrats",
-            "actions": { }
+            "actions": { } 
         },
     ]
 };
