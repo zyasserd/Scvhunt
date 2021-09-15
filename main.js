@@ -149,7 +149,7 @@ class Brainz {
 
 // -----------------------------
 
-// let myBrainz = Brainz();
+let myBrainz = new Brainz();
 
 document.getElementById("location").addEventListener('click', () => {
     getLocation(myBrainz.giveLocation, () => {
