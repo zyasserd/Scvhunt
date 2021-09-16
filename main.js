@@ -1,8 +1,5 @@
 'use strict';
 
-// git add . && git commit -m "some stuff" && git push -u origin main
-// 0. Cookies to mark the pointer
-
 const isDebug = false;
 
 /************************************
@@ -120,7 +117,14 @@ class Brainz {
 
     constructor() {
         this.data = globalThis.data["data"];
-        this.pointer = -1; //! retrieve from the cookie
+
+        let l = decodeURIComponent(document.cookie).split('; ').filter(val => val.startsWith("pointer"));
+        if (l.length > 0) {
+            // retrieve from the cookie
+            this.pointer = parseInt(l[0].substring(5)) - 1;
+        } else {
+            this.pointer = -1;
+        }
         this.next();
     }
 
@@ -188,7 +192,11 @@ class Brainz {
         document.getElementById('hint').innerHTML = this.data[this.pointer].hint;
 
         // Change cookie
-
+        if (this.pointer === (this.data.length - 1)) {
+            document.cookie = "pointer=; expires=Thu, 01 Jan 1970 00:00:01 GMT"
+        } else {
+            document.cookie = `pointer=${this.pointer};`;
+        }
     }
 
 }
@@ -223,3 +231,4 @@ document.getElementById("qr").addEventListener('click', () => {
 document.getElementById("text").addEventListener('click', () => {
     myBrainz.giveText(prompt("Write the code").toLowerCase().trim());
 });
+
