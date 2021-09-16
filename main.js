@@ -1,5 +1,7 @@
 'use strict';
 
+// final check: (color), (error handling section)
+
 const isDebug = false;
 
 /************************************

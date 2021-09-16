@@ -1,3 +1,7 @@
+:root {
+    --clr: green;
+}
+
 html, body {
     height: 100%;
     overflow: hidden;
@@ -15,12 +19,12 @@ body {
     width: 10pc;
     font-size: 2em;
     border-radius: 50%;
-    background-color: black;
+    background-color: var(--clr);
     color: white;
     position: fixed;
     text-align:center;
 
-    border: 5px sold black;
+    border: 5px sold var(--clr);
 }
 
 #location {
@@ -61,7 +65,7 @@ body {
     stroke-width: 10;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: black;
+    stroke: var(--clr);
     transform: rotate(-90deg);
 
     transition: 0.2s;

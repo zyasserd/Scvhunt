@@ -25,6 +25,13 @@ globalThis.data =
             }
         },
         {
+            "hint": "write 2+2 or loc",
+            "actions": {
+                "text": "4",
+                "location": [40.73381566987785, -73.98928807692592, 200]
+            }
+        },
+        {
             "hint": "scan google.com",
             "actions": {
                 "qr": "google.com",
