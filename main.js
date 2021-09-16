@@ -2,19 +2,31 @@
 
 // git add . && git commit -m "some stuff" && git push -u origin main
 // 0. Cookies to mark the pointer
-// fonts
+
+const isDebug = false;
+
+/************************************
+ *    Error Handling
+ ************************************/
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    console.log("Your device won't support camera!"); //!
+    window.location = "./error.html?text=Your device won't support camera!";
 }
 
 if (!('geolocation' in navigator)) {
-    console.log("Your device won't support location!"); //!
+    window.location = "./error.html?text=Your device won't support location!";
+}
+
+if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))) {
+    window.location = "./error.html?text=Sorry, only mobile devices are supported!";
 }
 
 
-// -----------------------------
 
+
+/************************************
+ *    QR and Location Related
+ ************************************/
 
 const videoElem = document.querySelector('#video');
 const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
@@ -98,8 +110,11 @@ function getDistance([lat1, lon1], [lat2, lon2]) {
 }
 
 
-// -----------------------------
 
+
+/************************************
+ *    Main Logic Manipulation
+ ************************************/
 
 class Brainz {
 
@@ -113,8 +128,14 @@ class Brainz {
         alert("Incorrect Input!");
     }
 
+    debugLog() {
+        if (isDebug) {
+            document.getElementById("log").innerHTML = e;
+        }
+    }
+
     giveLocation(e) {
-        document.getElementById("log").innerHTML = e; //! remove
+        this.debugLog();
         
         if (this.data[this.pointer].actions.location == null) {
             this.wrongInput();
@@ -129,7 +150,7 @@ class Brainz {
     }
 
     giveQR(e) {
-        document.getElementById("log").innerHTML = e; //! remove
+        this.debugLog();
         
         if (this.data[this.pointer].actions.qr == null) {
             this.wrongInput();
@@ -143,7 +164,7 @@ class Brainz {
     }
 
     giveText(e) {
-        document.getElementById("log").innerHTML = e; //! remove
+        this.debugLog();
 
         if (this.data[this.pointer].actions.text == null) {
             this.wrongInput();
@@ -172,7 +193,12 @@ class Brainz {
 
 }
 
-// -----------------------------
+
+
+
+/************************************
+ *    UI Events
+ ************************************/
 
 let myBrainz = new Brainz();
 

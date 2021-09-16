@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Scv Hunt - Error</title>
+
+        <style>
+            body {
+                text-align: center;
+            }
+            #context {
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: xx-large;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="context"></p>
+
+        <script type="application/javascript">
+            document.getElementById("context").innerHTML = new URLSearchParams(window.location.search).get('text');
+        </script>
+    </body>
+</html>
