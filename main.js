@@ -17,7 +17,7 @@ if (!('geolocation' in navigator)) {
 
 
 const videoElem = document.querySelector('#video');
-// const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
 
 globalThis.isQRon = false;
