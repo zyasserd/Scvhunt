@@ -15,10 +15,14 @@ body {
     width: 10pc;
     font-size: 2em;
     border-radius: 50%;
-    background-color: #000000;
+    background-color: black;
     color: white;
     position: fixed;
     text-align:center;
+
+    border-color: black;
+    border-style: solid;
+    border-width: 5px;
 }
 
 #location {
@@ -59,7 +63,7 @@ body {
     stroke-width: 10;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke: #000000;
+    stroke: black;
     transform: rotate(-90deg);
 
     transition: 0.2s;

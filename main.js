@@ -19,7 +19,16 @@ if (!('geolocation' in navigator)) {
 const videoElem = document.querySelector('#video');
 // const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
+
+globalThis.isQRon = false;
+
 function startQR(onSuccess) {
+    globalThis.isQRon = true;
+    document.getElementById('qr').style.backgroundColor = "white";
+    document.getElementById('qr').style.color = "black";
+
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-
+
     const constraints = { 
         video: {
             facingMode: { // rear camera
@@ -46,6 +55,13 @@ function startQR(onSuccess) {
 }
 
 function stopQR() {
+    globalThis.isQRon = false;
+    document.getElementById('qr').style.backgroundColor = "black";
+    document.getElementById('qr').style.color = "white";
+
+    // -=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    globalThis.isQRon = false;
     videoElem.srcObject = null;
     clearInterval(globalThis.qrReaderID);
 }
@@ -168,14 +184,12 @@ document.getElementById("location").addEventListener('click', () => {
     });
 });
 
-globalThis.isQRon = false;
 document.getElementById("qr").addEventListener('click', () => {
     if (globalThis.isQRon) {
         stopQR();
     } else {
         startQR(e => {
             myBrainz.giveQR(e);
-            globalThis.isQRon = false;
         });
     }
 });
