@@ -20,9 +20,7 @@ body {
     position: fixed;
     text-align:center;
 
-    border-color: black;
-    border-style: solid;
-    border-width: 5px;
+    border: 5px sold black;
 }
 
 #location {
@@ -77,6 +75,9 @@ body {
 
 #video {
     position: absolute;
+    width: 32.5pc;
+    height: 32.5pc;
+
     left: 2.5pc;
     bottom: 2.5pc;
 }

@@ -2,7 +2,7 @@
 
 // git add . && git commit -m "some stuff" && git push -u origin main
 // 0. Cookies to mark the pointer
-// 1. camera popup / toggle
+// fonts
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     console.log("Your device won't support camera!"); //!
