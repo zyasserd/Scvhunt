@@ -1,6 +1,6 @@
 'use strict';
 
-// final check: (color), (location)
+// final check: (color), (location), (isDebug)
 
 const isDebug = false;
 
@@ -134,21 +134,21 @@ class Brainz {
         alert("Incorrect Input!");
     }
 
-    debugLog() {
+    debugLog(e) {
         if (isDebug) {
             document.getElementById("log").innerHTML = e;
         }
     }
 
     giveLocation(e) {
-        this.debugLog();
+        this.debugLog(e);
         
         if (this.data[this.pointer].actions.location == null) {
             this.wrongInput();
             return
         }
 
-        [lat, lon, r] = this.data[this.pointer].actions.location;
+        let [lat, lon, r] = this.data[this.pointer].actions.location;
         if (getDistance(e, [lat, lon]) <= r)
             this.next();
         else
@@ -156,7 +156,7 @@ class Brainz {
     }
 
     giveQR(e) {
-        this.debugLog();
+        this.debugLog(e);
         
         if (this.data[this.pointer].actions.qr == null) {
             this.wrongInput();
@@ -170,7 +170,7 @@ class Brainz {
     }
 
     giveText(e) {
-        this.debugLog();
+        this.debugLog(e);
 
         if (this.data[this.pointer].actions.text == null) {
             this.wrongInput();
