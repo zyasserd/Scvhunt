@@ -1,6 +1,6 @@
 'use strict';
 
-// final check: (color), (error handling section)
+// final check: (color), (location)
 
 const isDebug = false;
 
@@ -36,7 +36,7 @@ globalThis.isQRon = false;
 function startQR(onSuccess) {
     globalThis.isQRon = true;
     document.getElementById('qr').style.backgroundColor = "white";
-    document.getElementById('qr').style.color = "black";
+    document.getElementById('qr').style.color = getComputedStyle(document.body).getPropertyValue('--clr');
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -67,7 +67,7 @@ function startQR(onSuccess) {
 
 function stopQR() {
     globalThis.isQRon = false;
-    document.getElementById('qr').style.backgroundColor = "black";
+    document.getElementById('qr').style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--clr');
     document.getElementById('qr').style.color = "white";
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-
