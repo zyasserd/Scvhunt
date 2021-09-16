@@ -6,7 +6,7 @@ const isDebug = false;
  *    Error Handling
  ************************************/
 
-if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
     window.location = "./error.html?text=Your device won't support camera!";
 }
 
