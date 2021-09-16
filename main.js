@@ -121,7 +121,7 @@ class Brainz {
         let l = decodeURIComponent(document.cookie).split('; ').filter(val => val.startsWith("pointer"));
         if (l.length > 0) {
             // retrieve from the cookie
-            this.pointer = parseInt(l[0].substring(5)) - 1;
+            this.pointer = parseInt(l[0].substring("pointer".length + 1)) - 1;
         } else {
             this.pointer = -1;
         }
