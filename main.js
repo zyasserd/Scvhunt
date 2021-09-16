@@ -1,7 +1,8 @@
 'use strict';
 
 // git add . && git commit -m "some stuff" && git push -u origin main
-// TODO:  Cookies to mark the pointer
+// 0. Cookies to mark the pointer
+// 1. camera popup / toggle
 
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     console.log("Your device won't support camera!"); //!
@@ -16,7 +17,7 @@ if (!('geolocation' in navigator)) {
 
 
 const videoElem = document.querySelector('#video');
-const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+// const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
 function startQR(onSuccess) {
     const constraints = { 
@@ -167,15 +168,18 @@ document.getElementById("location").addEventListener('click', () => {
     });
 });
 
+globalThis.isQRon = false;
 document.getElementById("qr").addEventListener('click', () => {
-    startQR(e => {
-        myBrainz.giveQR(e);
-    });
+    if (globalThis.isQRon) {
+        stopQR();
+    } else {
+        startQR(e => {
+            myBrainz.giveQR(e);
+            globalThis.isQRon = false;
+        });
+    }
 });
 
 document.getElementById("text").addEventListener('click', () => {
     myBrainz.giveText(prompt("Write the code").toLowerCase().trim());
 });
-
-
-// -----------------------------

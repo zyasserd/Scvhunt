@@ -67,11 +67,15 @@ body {
 
 
 .exteriorIcon {
-    margin: 2.5pc;    
+    margin: 2.5pc;
 }
 
 
-
+#video {
+    position: absolute;
+    left: 2.5pc;
+    bottom: 2.5pc;
+}
 
 #hint {
     font-size: 4em;
