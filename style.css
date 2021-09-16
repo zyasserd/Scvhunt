@@ -1,34 +1,78 @@
-/* html, body {
+html, body {
     height: 100%;
     overflow: hidden;
-} */
+}
+
+body {
+    padding-top: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
 
 
 .icon {
-    height: 60px;
-    line-height: 60px;
-    width: 60px;
+    height: 10pc;
+    width: 10pc;
     font-size: 2em;
     border-radius: 50%;
-    background-color: #4CAF50;
+    background-color: #000000;
     color: white;
-    text-align: center;
     position: fixed;
-
-    text-decoration: none;
+    text-align:center;
 }
 
 #location {
-    right: 15px;
-    bottom: 145px;
+    right: 2.5pc;
+    bottom: 25pc;
 }
 
 #qr {
-    right: 15px;
-    bottom: 80px;
+    right: 2.5pc;
+    bottom: 13.75pc;
 }
 
 #text {
-    right: 15px;
-    bottom: 15px;
+    right: 2.5pc;
+    bottom: 2.5pc;
+}
+
+
+
+
+#controller {
+    height: 40pc;
+    width: 40pc;
+    margin: auto;
+
+}
+#progressBase {
+    fill: none;
+
+    stroke-width: 10;
+    stroke: #f3f3f3;
+}
+#progress {
+    fill: none;
+    
+    stroke-dasharray: 282.7433388;
+    stroke-dashoffset: 282.7433388;
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #000000;
+    transform: rotate(-90deg);
+
+    transition: 0.2s;
+}
+
+
+.exteriorIcon {
+    margin: 2.5pc;    
+}
+
+
+
+
+#log {
+    font-size: xxx-large;
 }

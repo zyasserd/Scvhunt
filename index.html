@@ -4,24 +4,41 @@
     <title></title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/0962ad46ef.js" crossorigin="anonymous"></script>
+
   </head>
 
 
   <body>
-    <p id="log">The Paragraph</p>
-    <video id="video" width="400" height="600" autoplay></video>
-
-
-    <p id="pointer"></p>
+    
+    
+    <div id="controller" value="30">
+      <svg height=100% viewBox="-50 -50 100 100">
+        <circle id="progressBase" r="45"></circle>
+        <circle id="progress" r="45"></circle>
+        <text id="pointer" x="0" y="0" text-anchor="middle" stroke="#000000" stroke-width="1.5px" dy=".3em" font-family="ariel">1</text>
+      </svg>
+    </div>
+    
     <p id="hint"></p>
+    <p id="log">Logging</p>
 
 
-    <div id="location" class="icon">📌</div>
-    <div id="qr" class="icon">Q</div>
-    <div id="text" class="icon">T</div>
+    <video id="video" width="400" height="600" autoplay></video>
+    
 
 
-    <!-- Dont for get to link your JavaScript -->
+    <div id="location" class="icon">
+      <i class="fa-2x exteriorIcon fas fa-map-marker-alt"></i>
+    </div>
+    <div id="qr" class="icon">
+      <i class="fa-2x exteriorIcon fas fa-qrcode"></i>
+    </div>
+    <div id="text" class="icon">
+      <i class="fa-2x exteriorIcon far fa-keyboard"></i>
+    </div>
+
+
     <script src="./data.js" async></script>
     <script src="./main.js" async></script>
   </body>

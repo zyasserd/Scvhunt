@@ -143,6 +143,7 @@ class Brainz {
         this.pointer++;
 
         // Change map
+        document.getElementById('progress').style.strokeDashoffset = 2*Math.PI*45*(1 - (this.pointer / this.data.length));
         document.getElementById('pointer').innerHTML = this.pointer;
 
         // Change hint
@@ -175,3 +176,6 @@ document.getElementById("qr").addEventListener('click', () => {
 document.getElementById("text").addEventListener('click', () => {
     myBrainz.giveText(prompt("Write the code").toLowerCase().trim());
 });
+
+
+// -----------------------------
