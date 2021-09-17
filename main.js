@@ -1,24 +1,22 @@
 'use strict';
 
-// final check: (color), (location), (isDebug)
-
 const isDebug = false;
 
 /************************************
  *    Error Handling
  ************************************/
 
-// if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
-//     window.location = "./error.html?text=Your device won't support camera!";
-// }
+if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+    window.location = "./error.html?text=Your device won't support camera!";
+}
 
-// if (!('geolocation' in navigator)) {
-//     window.location = "./error.html?text=Your device won't support location!";
-// }
+if (!('geolocation' in navigator)) {
+    window.location = "./error.html?text=Your device won't support location!";
+}
 
-// if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))) {
-//     window.location = "./error.html?text=Sorry, only mobile devices are supported!";
-// }
+if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))) {
+    window.location = "./error.html?text=Sorry, only mobile devices are supported!";
+}
 
 
 
@@ -28,7 +26,7 @@ const isDebug = false;
  ************************************/
 
 const videoElem = document.querySelector('#video');
-// const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
 
 globalThis.isQRon = false;
@@ -211,16 +209,16 @@ class Brainz {
  ************************************/
 
 
-// url?link=
+// url?code=
 
 let myBrainz;
 
-fetch(new URLSearchParams(window.location.search).get('link'))
-    .then(res => res.json())
+fetch(`https://api.github.com/gists/${new URLSearchParams(window.location.search).get('code')}`)
+    .then(resp => resp.json())
+    .then(json => json["files"]["gistfile1.txt"]["content"])
     .then(out => {
-        myBrainz = new Brainz(out);
-    })
-
+        myBrainz = new Brainz(JSON.parse(out));
+    });
 
 document.getElementById("location").addEventListener('click', () => {
     getLocation((e) => {
