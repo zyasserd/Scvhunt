@@ -117,8 +117,8 @@ function getDistance([lat1, lon1], [lat2, lon2]) {
 
 class Brainz {
 
-    constructor() {
-        this.data = globalThis.data["data"];
+    constructor(data) {
+        this.data = data["data"];
 
         let l = decodeURIComponent(document.cookie).split('; ').filter(val => val.startsWith("pointer"));
         if (l.length > 0) {
@@ -210,7 +210,17 @@ class Brainz {
  *    UI Events
  ************************************/
 
-let myBrainz = new Brainz();
+
+// url?link=
+
+let myBrainz;
+
+fetch(new URLSearchParams(window.location.search).get('link'))
+    .then(res => res.json())
+    .then(out => {
+        myBrainz = new Brainz(out);
+    })
+
 
 document.getElementById("location").addEventListener('click', () => {
     getLocation((e) => {
