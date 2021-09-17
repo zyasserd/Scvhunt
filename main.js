@@ -8,17 +8,17 @@ const isDebug = false;
  *    Error Handling
  ************************************/
 
-if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
-    window.location = "./error.html?text=Your device won't support camera!";
-}
+// if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+//     window.location = "./error.html?text=Your device won't support camera!";
+// }
 
-if (!('geolocation' in navigator)) {
-    window.location = "./error.html?text=Your device won't support location!";
-}
+// if (!('geolocation' in navigator)) {
+//     window.location = "./error.html?text=Your device won't support location!";
+// }
 
-if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))) {
-    window.location = "./error.html?text=Sorry, only mobile devices are supported!";
-}
+// if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))) {
+//     window.location = "./error.html?text=Sorry, only mobile devices are supported!";
+// }
 
 
 
@@ -28,7 +28,7 @@ if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Ph
  ************************************/
 
 const videoElem = document.querySelector('#video');
-const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
+// const barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
 
 
 globalThis.isQRon = false;
