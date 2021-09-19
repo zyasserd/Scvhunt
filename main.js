@@ -230,6 +230,7 @@ let URLParams = new URLSearchParams(window.location.search);
 // url?color=112233
 //          ^hex code
 // defaults to black
+let v;
 if ((v = URLParams.get('color')) != null)
     document.querySelector(':root').style.setProperty(
         '--clr',
@@ -245,9 +246,9 @@ if ((v = URLParams.get('color')) != null)
 let myBrainz;
 let link;
 
-if ((v == URLParams.get('gist')) != null) {
+if ((v = URLParams.get('gist')) != null) {
     link = `https://api.github.com/gists/${v}`;
-} else if ((v == URLParams.get('gist')) != null) {
+} else if ((v = URLParams.get('link')) != null) {
     link = v;
 } else {
     alert("You haven't provided a link!");
