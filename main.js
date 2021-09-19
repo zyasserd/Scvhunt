@@ -175,7 +175,8 @@ class Brainz {
             return
         }
 
-        if (e == this.data[this.pointer].actions.text)
+        // Note: ".toLowerCase().trim()"
+        if (e.toLowerCase().trim() === this.data[this.pointer].actions.text.toLowerCase().trim())
             this.next();
         else
             this.wrongInput();
@@ -205,20 +206,66 @@ class Brainz {
 
 
 /************************************
- *    UI Events
+ *    Data Input
  ************************************/
 
+// The format: 
+let _sample_JSON_format = 
+{
+    "data": [
+        {
+            "hint": "hint1",
+            "actions": { // include as many as you want {even zero options work, useful for the last option}
+                "location": [1 /* latitude */, 2 /* longitude */, 5 /* radius in meters */],
+                "qr": "link.com",
+                "text": "the code" // is compared trimmed and in lowercase
+            }
+        }
+    ]
+};
 
-// url?code=
+
+let URLParams = new URLSearchParams(window.location.search);
+
+// url?color=112233
+//          ^hex code
+// defaults to black
+if ((v = URLParams.get(color)) != null)
+    document.querySelector(':root').style.setProperty(
+        '--clr',
+        "#" + v
+    );
+
+
+
+// url?gist={github gist key}
+// url?link={link}
+// both the link or the (github gist key) should point to a JSON file with the data
 
 let myBrainz;
+let link;
 
-fetch(`https://api.github.com/gists/${new URLSearchParams(window.location.search).get('code')}`)
+if ((v == URLParams.get('gist')) != null) {
+    link = `https://api.github.com/gists/${v}`;
+} else if ((v == URLParams.get('gist')) != null) {
+    link = v;
+} else {
+    alert("You haven't provided a link!");
+    throw "You haven't provided a link!";
+}
+
+fetch(link)
     .then(resp => resp.json())
     .then(json => json["files"]["gistfile1.txt"]["content"])
     .then(out => {
         myBrainz = new Brainz(JSON.parse(out));
     });
+
+
+
+/************************************
+ *    UI Events
+ ************************************/
 
 document.getElementById("location").addEventListener('click', () => {
     getLocation((e) => {
@@ -239,6 +286,6 @@ document.getElementById("qr").addEventListener('click', () => {
 });
 
 document.getElementById("text").addEventListener('click', () => {
-    myBrainz.giveText(prompt("Write the code").toLowerCase().trim());
+    myBrainz.giveText(prompt("Write the code"));
 });
 
