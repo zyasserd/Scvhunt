@@ -15,7 +15,7 @@ if (!('geolocation' in navigator)) {
 }
 
 if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent))) {
-    window.location = "./error.html?text=Sorry, only mobile devices are supported!";
+    window.location = './error.html?text=Sorry, only mobile devices are supported!';
 }
 
 
@@ -33,7 +33,7 @@ globalThis.isQRon = false;
 
 function startQR(onSuccess) {
     globalThis.isQRon = true;
-    document.getElementById('qr').style.backgroundColor = "white";
+    document.getElementById('qr').style.backgroundColor = 'white';
     document.getElementById('qr').style.color = getComputedStyle(document.body).getPropertyValue('--clr');
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -41,7 +41,7 @@ function startQR(onSuccess) {
     const constraints = { 
         video: {
             facingMode: { // rear camera
-                exact: "environment"
+                exact: 'environment'
             }
         },
         audio: false,
@@ -66,7 +66,7 @@ function startQR(onSuccess) {
 function stopQR() {
     globalThis.isQRon = false;
     document.getElementById('qr').style.backgroundColor = getComputedStyle(document.body).getPropertyValue('--clr');
-    document.getElementById('qr').style.color = "white";
+    document.getElementById('qr').style.color = 'white';
 
     // -=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -116,12 +116,12 @@ function getDistance([lat1, lon1], [lat2, lon2]) {
 class Brainz {
 
     constructor(data) {
-        this.data = data["data"];
+        this.data = data['data'];
 
-        let l = decodeURIComponent(document.cookie).split('; ').filter(val => val.startsWith("pointer"));
+        let l = decodeURIComponent(document.cookie).split('; ').filter(val => val.startsWith('pointer'));
         if (l.length > 0) {
             // retrieve from the cookie
-            this.pointer = parseInt(l[0].substring("pointer".length + 1)) - 1;
+            this.pointer = parseInt(l[0].substring('pointer'.length + 1)) - 1;
         } else {
             this.pointer = -1;
         }
@@ -129,12 +129,12 @@ class Brainz {
     }
 
     wrongInput() {
-        alert("Incorrect Input!");
+        alert('Incorrect Input!');
     }
 
     debugLog(e) {
         if (isDebug) {
-            document.getElementById("log").innerHTML = e;
+            document.getElementById('log').innerHTML = e;
         }
     }
 
@@ -175,7 +175,7 @@ class Brainz {
             return
         }
 
-        // Note: ".toLowerCase().trim()"
+        // Note: '.toLowerCase().trim()'
         if (e.toLowerCase().trim() === this.data[this.pointer].actions.text.toLowerCase().trim())
             this.next();
         else
@@ -194,7 +194,7 @@ class Brainz {
 
         // Change cookie
         if (this.pointer === (this.data.length - 1)) {
-            document.cookie = "pointer=; expires=Thu, 01 Jan 1970 00:00:01 GMT"
+            document.cookie = 'pointer=; expires=Thu, 01 Jan 1970 00:00:01 GMT'
         } else {
             document.cookie = `pointer=${this.pointer};`;
         }
@@ -212,13 +212,13 @@ class Brainz {
 // The format: 
 let _sample_JSON_format = 
 {
-    "data": [
+    'data': [
         {
-            "hint": "hint1",
-            "actions": { // include as many as you want {even zero options work, useful for the last option}
-                "location": [1 /* latitude */, 2 /* longitude */, 5 /* radius in meters */],
-                "qr": "link.com",
-                "text": "the code" // is compared trimmed and in lowercase
+            'hint': 'hint1',
+            'actions': { // include as many as you want {even zero options work, useful for the last option}
+                'location': [1 /* latitude */, 2 /* longitude */, 5 /* radius in meters */],
+                'qr': 'link.com',
+                'text': 'the code' // is compared trimmed and in lowercase
             }
         }
     ]
@@ -230,10 +230,10 @@ let URLParams = new URLSearchParams(window.location.search);
 // url?color=112233
 //          ^hex code
 // defaults to black
-if ((v = URLParams.get(color)) != null)
+if ((v = URLParams.get('color')) != null)
     document.querySelector(':root').style.setProperty(
         '--clr',
-        "#" + v
+        '#' + v
     );
 
 
@@ -256,7 +256,7 @@ if ((v == URLParams.get('gist')) != null) {
 
 fetch(link)
     .then(resp => resp.json())
-    .then(json => json["files"]["gistfile1.txt"]["content"])
+    .then(json => json['files']['gistfile1.txt']['content'])
     .then(out => {
         myBrainz = new Brainz(JSON.parse(out));
     });
@@ -267,15 +267,15 @@ fetch(link)
  *    UI Events
  ************************************/
 
-document.getElementById("location").addEventListener('click', () => {
+document.getElementById('location').addEventListener('click', () => {
     getLocation((e) => {
         myBrainz.giveLocation(e);
     }, () => {
-        alert("Failed to get location, try again!");
+        alert('Failed to get location, try again!');
     });
 });
 
-document.getElementById("qr").addEventListener('click', () => {
+document.getElementById('qr').addEventListener('click', () => {
     if (globalThis.isQRon) {
         stopQR();
     } else {
@@ -285,7 +285,7 @@ document.getElementById("qr").addEventListener('click', () => {
     }
 });
 
-document.getElementById("text").addEventListener('click', () => {
-    myBrainz.giveText(prompt("Write the code"));
+document.getElementById('text').addEventListener('click', () => {
+    myBrainz.giveText(prompt('Write the code'));
 });
 
